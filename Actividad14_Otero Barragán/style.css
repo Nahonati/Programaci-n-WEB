@@ -1,0 +1,42 @@
+.nav{
+    
+    background-color: rgb(192, 105, 209);
+}
+
+.sesion{
+    width: 350px;
+    height: 400px;
+    background-color: rgb(255, 255, 255);
+    outline: solid 2px gray;
+    margin: 0 auto;
+    border-radius: 10px;
+    text-align: center;
+    padding: 15px;
+}
+
+.marca{
+    color: purple;
+    font-style:italic;
+}
+
+.sesion svg{
+    color: purple;
+}
+
+.nav-link{
+    color: rgb(255, 255, 255) !important;
+}
+
+.nav-link:hover {
+    color: #4f0661 !important; 
+}
+
+.text{
+    text-align: start;
+}
+
+.submit{
+    margin: 0 auto;
+    background-color:#4f0661;
+    color: white;
+}
