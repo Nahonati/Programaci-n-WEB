@@ -1,0 +1,75 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+
+h1, h2{
+    text-align: center;
+}
+
+header{
+    background-color: rgb(198, 194, 194);
+    padding: 10px;
+}
+
+.login{
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: solid 1px rgb(198, 194, 194);
+    border-radius: 5px;
+    margin-top: 100px;
+}
+
+footer{
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+input[type="text"], input[type="password"]{
+    padding: 10px;
+    border: none;
+    border: solid 1px rgb(198, 194, 194);
+    border-radius: 5px;
+    width: 280px;
+    margin-bottom: 10px;
+}
+
+.btn{
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer; 
+    border-radius: 5px;
+    width: 100%;
+}
+
+.btn-success{
+    outline: solid 1px rgb(40, 85, 174);
+    color: rgb(40, 85, 174);
+}
+
+.alert-success,.btn-success:hover{
+    background-color: rgb(40, 85, 174);
+    color: white;
+}
+
+.alert{
+    padding: 10px;
+    text-align: center;
+}
+
+.alert-danger, .btn-danger:hover{
+    background-color: crimson;
+    color: white;
+}
+
+.btn-danger{
+    outline: solid 1px crimson;
+    color: crimson;
+}
