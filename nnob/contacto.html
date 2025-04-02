@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactanos</title>
+</head>
+<body>
+    
+    <h2>Formulario de Contacto</h2>
+
+    <form action="procesar.php" method="post">
+        <div>
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre" required>
+        </div>
+
+        <div>
+            <label for="correo">Correo</label>
+            <input type="email" name="correo" id="correo" required>
+        </div>
+
+        <div>
+            <label for="mensaje">Mensaje</label>
+            <textarea name="mensaje" id="mensaje" required></textarea>
+        </div>
+
+        <input type="submit" value="Enviar">
+
+
+    </form>
+
+
+
+</body>
+</html>
