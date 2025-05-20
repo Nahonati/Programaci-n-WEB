@@ -4,7 +4,7 @@ require '../../includes/conexion.php';
 
 // Verificar que el usuario está logueado
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: login.php");
+    header("Location: ../public/login.php");
     exit();
 }
 
@@ -21,8 +21,8 @@ if (!$id_habito) {
 
 try {
     // Primero revisar que el hábito pertenezca al usuario y esté activo
-    $stmt = $conn->prepare("SELECT id FROM habitos WHERE id = ? AND usuario_id = ? AND activo = TRUE");
-    $stmt->execute([$id_habito, $id_usuario]);
+    $stmt = $conn->prepare("INSERT INTO registro_habitos (fecha_creacion, completado, habito_id, id_usuario) VALUES (?, 1, ?, ?)");
+    $stmt->execute([$fecha_hoy, $id_habito, $id_usuario]);
     $habito = $stmt->fetch();
 
     // Si no existe o no le pertenece, redirigir

@@ -61,19 +61,33 @@ $hay_error = isset($_GET['error']) && $_GET['error'] === 'campos_obligatorios';
             <textarea name="descripcion"></textarea>
         </div>
 
-        <div class="form-registro">
-            <label>Frecuencia</label>
-            <div>
-            <div>
-                <select name="id_frecuencia" required>
-                <option value="">Seleccione una frecuencia</option>
-                <?php foreach ($frecuencias as $freq): ?>
-                    <option value="<?= $freq['id_frecuencia'] ?>"><?= htmlspecialchars($freq['descripcion']) ?></option>
-                <?php endforeach; ?>
-                </select>
-            </div>
-            </div>
+        <div class="field">
+    <label class="label">Frecuencia</label>
+    <div class="control">
+        <div class="select">
+            <select name="id_frecuencia" id="id_frecuencia" required>
+                <option value="">Selecciona una frecuencia</option>
+                <option value="1">Diario</option>
+                <option value="2">Semanal</option>
+                <option value="3">Personalizada</option>
+            </select>
         </div>
+    </div>
+</div>
+
+<!-- Aquí van los checkboxes de días, ocultos inicialmente -->
+<div class="field" id="dias_personalizados" style="display: none;">
+    <label class="label">Selecciona los días</label>
+    <div class="control">
+        <?php
+        $dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+        foreach ($dias as $dia): ?>
+            <label class="checkbox">
+                <input type="checkbox" name="dias_personalizados[]" value="<?= $dia ?>"> <?= $dia ?>
+            </label><br>
+        <?php endforeach; ?>
+    </div>
+</div>
         <div>
             <div>
                 <button type="submit" class="boton">Guardar hábito</button>
@@ -93,4 +107,18 @@ $hay_error = isset($_GET['error']) && $_GET['error'] === 'campos_obligatorios';
 include('../../public/footer.html');
 ?>
 </body>
+<script>
+    function toggleDias() {
+        const frecuencia = document.getElementById('id_frecuencia').value;
+        const diasDiv = document.getElementById('dias_personalizados');
+        diasDiv.style.display = (frecuencia === '3') ? 'block' : 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectFrecuencia = document.getElementById('id_frecuencia');
+        selectFrecuencia.addEventListener('change', toggleDias);
+        toggleDias(); // Mostrar/ocultar en carga inicial
+    });
+</script>
+
 </html>

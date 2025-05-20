@@ -4,7 +4,7 @@ require '../../includes/conexion.php';
 
 // Verificar que el usuario está logueado
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: login.php");
+    header("Location: ../public/login.php");
     exit();
 }
 

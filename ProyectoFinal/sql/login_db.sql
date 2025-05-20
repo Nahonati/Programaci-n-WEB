@@ -50,6 +50,7 @@ CREATE TABLE habitos(
     fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
     usuario_id INT,
     id_frecuencia TINYINT UNSIGNED NOT NULL,
+    dias_personalizados VARCHAR(100) DEFAULT NULL
     FOREIGN KEY (id_frecuencia) REFERENCES frecuencias(id_frecuencia);
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 ); 
@@ -67,7 +68,9 @@ INSERT INTO frecuencias (descripcion) VALUES
 CREATE TABLE registro_habitos(
     id INT AUTO_INCREMENT PRIMARY KEY,
     habito_id INT,
+    id_usuario INT,
     FOREIGN KEY (habito_id) REFERENCES habitos(id),
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
     fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
     completado boolean,
     hora_registro time

@@ -43,6 +43,7 @@ while ($row = $stmt_hist->fetch(PDO::FETCH_ASSOC)) {
 <meta charset="UTF-8">
 <title>Mis Hábitos</title>
 <link rel="stylesheet" href="../../public/css/style.css">  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 <body>
 <nav class="nav-container">
@@ -60,11 +61,10 @@ while ($row = $stmt_hist->fetch(PDO::FETCH_ASSOC)) {
     
 
     <?php if (empty($habitos)): ?>
-        <div class="card">
-            <h2 class="titulo">Mis Hábitos</h2>
-            <p>Aún no tienes hábitos registrados.</p>
-            <br>
-            <a href="../../public/habitos/crear_habito.php" class="boton">Crear mi primer hábito</a>
+        <div class="section">
+            <h2 class="title has-text-centered" style="color: #ffbb98 ;">Mis Hábitos</h2>
+            <div class="notification is-warning">No has registrado habitos aún.</div>
+            <a href="../../public/habitos/crear_habito.php" class="boton"> + Crear mi primer hábito</a>
         </div>
     <?php else: ?>
         <div class="habitos-grid">
@@ -94,8 +94,9 @@ while ($row = $stmt_hist->fetch(PDO::FETCH_ASSOC)) {
                     </div>
                 </div>
             <?php endforeach; ?>
-            <br><br>
-            <a class="boton" href="crear_habito.php">Crear un habito</a>
+            <a href="crear_habito.php">
+        <span class="boton"> Crear un nuevo habito</span>
+            </a>        
         </div>
     <?php endif; ?>
     

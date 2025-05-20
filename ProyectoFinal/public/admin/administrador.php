@@ -21,6 +21,36 @@
     * se filtra por nombre o correo electrónico.
     */
 
+    // Procesar inserción de usuario si se envió el formulario
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['insertar_usuario'])) {
+        $nombres = $_POST['nombres'] ?? '';
+        $a_paterno = $_POST['a_paterno'] ?? '';
+        $a_materno = $_POST['a_materno'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $password = $_POST['password'] ?? '';
+        $mensaje_insert = '';
+
+        if ($nombres && $a_paterno && $a_materno && $email && $password) {
+            // Hashear la contraseña
+            $password_hash = password_hash($password, PASSWORD_DEFAULT);
+            try {
+                $sql_insert = "INSERT INTO usuarios (nombres, a_paterno, a_materno, email, password, fecha_creacion, fecha_actualizacion) VALUES (:nombres, :a_paterno, :a_materno, :email, :password, NOW(), NOW())";
+                $stmt_insert = $conn->prepare($sql_insert);
+                $stmt_insert->execute([
+                    ':nombres' => $nombres,
+                    ':a_paterno' => $a_paterno,
+                    ':a_materno' => $a_materno,
+                    ':email' => $email,
+                    ':password' => $password_hash
+                ]);
+                $mensaje_insert = 'Usuario insertado correctamente.';
+            } catch (PDOException $e) {
+                $mensaje_insert = 'Error al insertar usuario: ' . $e->getMessage();
+            }
+        } else {
+            $mensaje_insert = 'Todos los campos son obligatorios.';
+        }
+    }
 
     // Verificamos si hay una búsqueda (GET), si no, se deja como cadena vacía
     $busqueda = $_GET['busqueda'] ?? '';
@@ -78,16 +108,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador</title>
     <link rel="stylesheet" href="../../public/css/style.css">
-    <style>
-    /* Estilos básicos para la tabla */
-    table { margin: 20px; border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #ccc; padding: 8px; }
-    th { background-color: #eee; }
-    /* Estilo para botones de acción */
-    a.boton2 { margin: 10px; margin-top: 10px ; padding: 4px 10px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; }
-    a.boton2.eliminar { margin: 10px; padding: 4px; background: #dc3545;}
-    
-    </style>
+
 </head>
 <body>
 
@@ -101,9 +122,36 @@
 </nav>
 
     <div class="busqueda">
-        <h2 class="titulo">Bienvenido Administrador!</h2>
-        <h2 class="titulo">Usuarios Registrados</h2>
-        
+        <h2 class="title has-text-centered" style="color: #ffbb98 ;">Bienvenido Administrador!</h2>
+        <h2 class="title has-text-centered" style="color: #ffbb98 ;">Usuarios Registrados</h2>
+        <?php if (!empty($mensaje_insert)): ?>
+            <div class="mensaje-insert <?= strpos($mensaje_insert, 'correctamente') !== false ? 'success' : 'error' ?>">
+                <?= htmlspecialchars($mensaje_insert) ?>
+            </div>
+        <?php endif; ?>
+        <!-- Formulario de inserción de usuario -->
+        <form method="POST" action="" class="insertar-usuario">
+            <fieldset>
+                <legend>Agregar nuevo usuario</legend>
+                <input type="hidden" name="insertar_usuario" value="1">
+                <label>Nombres:
+                    <input type="text" name="nombres" required>
+                </label>
+                <label>Apellido Paterno:
+                    <input type="text" name="a_paterno" required>
+                </label>
+                <label>Apellido Materno:
+                    <input type="text" name="a_materno" required>
+                </label>
+                <label>Correo:
+                    <input type="email" name="email" required>
+                </label>
+                <label>Contraseña:
+                    <input type="password" name="password" required>
+                </label>
+                <button type="submit">Agregar Usuario</button>
+            </fieldset>
+        </form>
         <!-- Formulario de búsqueda -->
         <form method="GET" action="../../public/admin/administrador.php">
         <label>Buscar por nombre o correo:</label>

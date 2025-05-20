@@ -27,18 +27,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+    $dias_personalizados = null;
+    if ((int)$id_frecuencia === 3 && !empty($_POST['dias_personalizados'])) {
+    $dias_personalizados = implode(',', $_POST['dias_personalizados']); // Ejemplo: "Lunes,Miércoles,Viernes"
+}
     try {
         // Preparar e insertar el nuevo hábito en la base de datos
         $stmt = $conn->prepare("INSERT INTO habitos 
-            (nombre, descripcion, usuario_id, id_frecuencia, hora)
-            VALUES (?, ?, ?, ?, ?)");
+        (nombre, descripcion, usuario_id, id_frecuencia, hora, dias_personalizados)
+        VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->execute([
             $nombre,
             $descripcion,
             $id_usuario,
             $id_frecuencia,
-            $hora
-        ]);
+            $hora,
+            $dias_personalizados
+]);
 
         // Todo salió bien, redirigir a la lista con un mensaje de éxito
         header("Location: ../../public/habitos/habitos.php?success=1");

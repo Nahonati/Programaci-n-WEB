@@ -36,7 +36,7 @@
             empty($_POST['email']) ||
             empty($_POST['password'])
         ) {
-            echo "Todos los campos obligatorios deben llenarse. <a href='registro.php'>Volver</a>";
+            echo "Todos los campos obligatorios deben llenarse. <a href='../public/registro.php'>Volver</a>";
             exit; // Se detiene si hay algún campo vacío
         }
 
@@ -58,7 +58,7 @@
         $verificar->execute([':email' => $email]);
 
         if ($verificar->rowCount() > 0) {
-            echo "El correo ya está registrado. <a href='registro.php'>Intentar con otro</a>";
+            echo "El correo ya está registrado. <a href='../public/registro.php'>Intentar con otro</a>";
             exit;
         }
 

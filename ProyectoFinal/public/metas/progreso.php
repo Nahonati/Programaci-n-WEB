@@ -31,9 +31,9 @@ if (!$meta) {
 
 // Consultar cuántas veces se ha completado el hábito dentro del rango de fechas de la meta
 $completados = $conn->prepare("SELECT COUNT(*) FROM registro_habitos
-                            WHERE id = ? AND completado = 1
+                            WHERE habito_id = ? AND id_usuario = ? AND completado = 1
                             AND fecha_creacion BETWEEN ? AND ?");
-$completados->execute([$meta['id_habito'], $meta['fecha_inicio'], $meta['fecha_fin']]);
+$completados->execute([$meta['id_habito'], $id_usuario, $meta['fecha_inicio'], $meta['fecha_fin']]);
 $total_completado = $completados->fetchColumn();
 
 // Calcular el porcentaje de cumplimiento, con un máximo de 100%
@@ -79,6 +79,8 @@ $porcentaje = min(100, round(($total_completado / $meta['cantidad_objetivo']) * 
     <progress class="progress is-primary" value="<?= $porcentaje ?>" max="100"><?= $porcentaje ?>%</progress>
     <p><?= $porcentaje ?>% completado</p>
     </div>
+    <a  class="boton"href="../../public/metas/metas.php">Volver</a>
+
 </div>
 </section>
 </body>

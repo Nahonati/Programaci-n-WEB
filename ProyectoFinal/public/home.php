@@ -15,9 +15,9 @@ session_start();
         $id_usuario = $_SESSION['usuario_id'];
         $hoy = date('Y-m-d');
 
-        // Obtener hábitos registrados para hoy
-        $stmt = $conn->prepare("SELECT * FROM habitos WHERE usuario_id = ? AND DATE(fecha_creacion) = ?");
-        $stmt->execute([$id_usuario, $hoy]);
+        // Obtener todos los hábitos activos del usuario
+        $stmt = $conn->prepare("SELECT * FROM habitos WHERE usuario_id = ? AND activo = 1");
+        $stmt->execute([$id_usuario]);
         $habitos_hoy = $stmt->fetchAll();
 ?>
 
@@ -43,7 +43,9 @@ session_start();
             </div>
         </div>
     </nav>
-    
+    <br><br><br><br><br>
+
+
     <div class="cards-grid">
         <!-- Estado de Ánimo Card -->
         <div class="card">
@@ -72,6 +74,8 @@ session_start();
     </div>
 
     <div class="cards-grid">
+    <br><br><br>
+
     <!-- Habitos Card -->
     <div class="card">
         <div class="card-header">

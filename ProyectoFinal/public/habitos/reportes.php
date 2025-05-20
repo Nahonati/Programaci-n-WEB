@@ -31,7 +31,7 @@ foreach ($habitos as $habito) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reporte Semanal - BestVersion</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../../public/css/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   
 </head>
@@ -39,12 +39,12 @@ foreach ($habitos as $habito) {
 
 <nav class="nav-container">
         <div class="contenido">
-            <a href="home.php" class="nav-logo">BestVersion</a>
+            <a href="../../public/home.php" class="nav-logo">BestVersion</a>
             <div class="nav-links">
-                <a href="home.php">Mis metas</a>
-                <a href="habitos.php">Mis habitos</a>
-                <a href="estado_animo.php">Estado de Animo</a>
-                <a href="miperfil.php">Mi perfil</a>
+                <a href="../../public/metas/metas.php">Mis metas</a>
+                <a href="../../public/habitos/habitos.php">Mis habitos</a>
+                <a href="../../public/animo/estado_animo.php">Estado de Animo</a>
+                <a href="../../public/miperfil.php">Mi perfil</a>
             </div>
         </div>
     </nav>

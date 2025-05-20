@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['estado_animo_id'])) {
             ]);
 
             echo "Estado de ánimo registrado correctamente.";
-            echo '<a href="../public/home.php">Volver</a>';
+            echo '<a href="../../public/home.php">Volver</a>';
             // Opcional: redireccionar
             // header("Location: miperfil.php");
         }

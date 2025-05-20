@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../public/css/style.css">
 
 </head>
 <body>
 <div class="container">
         <div class="registro-container">
             <h2 class="titulo2">Registra tu Cuenta!</h2>
-            <form action="procesar_usuario.php" method="POST" onsubmit="return validarFormulario();">
+            <form action="../includes/procesar_usuario.php" method="POST" onsubmit="return validarFormulario();">
                 <div class="form-registro">
                     <label for="nombres">Nombres</label>
                     <input type="text" id="nombres" name="nombres" required placeholder="Ingresa tu nombre">
@@ -41,7 +41,7 @@
             </form>
         </div>
         <div class="welcome">
-            <img src="img/registro.gif" alt="welcome">
+            <img src="../public/assests/img/registro.gif" alt="welcome">
         </div>
     </div>
 </body>

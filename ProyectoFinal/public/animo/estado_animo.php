@@ -35,7 +35,7 @@ $estado = $stmt->fetch(PDO::FETCH_ASSOC);
 <body>
 <nav class="nav-container">
         <div class="contenido">
-            <a href="../public/home.php" class="nav-logo">BestVersion</a>
+            <a href="../../public/home.php" class="nav-logo">BestVersion</a>
             <div class="nav-links">
                 <a href="../../public/metas/metas.php">Mis metas</a>
                 <a href="../../public/habitos/habitos.php">Mis habitos</a>
